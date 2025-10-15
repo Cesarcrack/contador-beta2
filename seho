@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Days in Hardcore - Nether Countdown</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffcb6b;
+    background: #0b0000 url('http://imgfz.com/i/JCvbYpe.png') repeat;
+    background-size: 128px 128px;
+    animation: moverFondo 40s linear infinite;
+  }
+
+  @keyframes moverFondo {
+    from { background-position: 0 0; }
+    to { background-position: 512px 512px; }
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+    z-index: 0;
+  }
+
+  .contenedor {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    background: rgba(20, 0, 0, 0.7);
+    border: 2px solid #ff5555;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 30px #ff0000aa;
+  }
+
+  .contenedor img {
+    width: 250px;
+    margin-bottom: 25px;
+  }
+
+  h1 {
+    color: #ff7777;
+    text-shadow: 0 0 10px #ff3333;
+    margin-bottom: 25px;
+  }
+
+  .tiempo {
+    font-size: 2em;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .tiempo div {
+    text-align: center;
+  }
+
+  .tiempo span {
+    display: block;
+    font-size: 3em;
+    color: #ffcb6b;
+    text-shadow: 0 0 10px #ff8800;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 10px;
+    color: #ff9999;
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="contenedor">
+    <img src="Hardcore.png" alt="5 Days in Hardcore">
+    <h1>Cuenta regresiva hasta el 20 de Octubre 2025</h1>
+    <div class="tiempo">
+      <div><span id="dias">0</span>Días</div>
+      <div><span id="horas">0</span>Horas</div>
+      <div><span id="minutos">0</span>Minutos</div>
+      <div><span id="segundos">0</span>Segundos</div>
+    </div>
+  </div>
+
+  <footer>🔥 ESTAMOS TENIENDO PROBLEMAS CON EL SERVIDOR XDXD 🔥</footer>
+
+<script>
+  const fechaObjetivo = new Date("October 20, 2025 00:00:00").getTime();
+
+  function actualizarContador() {
+    const ahora = new Date().getTime();
+    const diferencia = fechaObjetivo - ahora;
+
+    if (diferencia <= 0) {
+      document.querySelector(".contenedor").innerHTML = "<h1>¡El día ha llegado! 💀🔥</h1>";
+      clearInterval(intervalo);
+      return;
+    }
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+    document.getElementById("dias").textContent = dias;
+    document.getElementById("horas").textContent = horas;
+    document.getElementById("minutos").textContent = minutos;
+    document.getElementById("segundos").textContent = segundos;
+  }
+
+  const intervalo = setInterval(actualizarContador, 1000);
+  actualizarContador();
+</script>
+</body>
+</html>
